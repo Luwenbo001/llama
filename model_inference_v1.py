@@ -155,7 +155,8 @@ def calculate_accuracy(result, train_data,task_type):
         FN = 0
         for i,result_point in enumerate(result):
             answer_str = train_data[i]['output'] 
-            answer = float(answer_str)
+            if answer_str == '0': answer = -1
+            else: answer = 1
             try:
                 Response_locate = result_point.index("Response:")
             except:
@@ -188,7 +189,7 @@ def calculate_accuracy(result, train_data,task_type):
                     FN += 1
                 else:
                     FP += 1
-            # print(f"right_ans = ", right_ans)
+
         precision = -1
         recall = -1
         f1 = -1
